@@ -1,95 +1,81 @@
-const calculatorScreen = document.querySelector('.calculator-screen')
 
-const updateScreen = (number) => {
-  calculatorScreen.value = number
+//tugas hari
+function myFunction() {
+  var hari, text;
+
+  hari = document.getElementById("numb").value;  
+
+ if (hari === "senin") {
+  text = "Besok adalah hari selasa";
+ } else if (hari === "selasa") {
+  text = "Besok adalah hari rabu";
+ } else if (hari === "rabu") {
+  text = "Besok adalah hari kamis";
+ } else if (hari === "kamis") {
+  text = "Besok adalah hari jum'at";
+ } else if (hari === "jum'at") {
+  text = "Besok adalah hari sabtu";
+ } else if (hari === "sabtu") {
+  text = "Besok adalah hari minggu";
+ } else if (hari === "minggu") {
+  text = "Besok adalah hari senin";
+ } else {
+  text = "Bukan nama hari";
+ }
+  document.getElementById("demo").innerHTML = text;
 }
 
-let prevNumber = ''
-let calculationOperator =''
-let currentNumber = '0'
+  //tugas Nilai
+  function myFunction1() {
+    var niai, text;
+  
+    nilai = document.getElementById("numb1").value;
+    
 
-const numbers = document.querySelectorAll(".number")
-
-numbers.forEach((number) => {
-  number.addEventListener("click", (event) => {
-    inputNumber (event.target.value)
-    updateScreen(currentNumber)
-  })
-})
-
-const inputNumber = (number) => {
-  if (currentNumber ==='0') {
-    currentNumber = number
-  } else {
-  currentNumber += number
+   if (nilai >= 90 && nilai <=100) {
+    text = "Nilai A";
+   } else if (nilai >= 75 && nilai <=89) {
+    text = "Nilai B";
+   } else if (nilai >= 60  && nilai <=74) {
+    text = "Nilai C";
+   } else if (nilai >= 50 && nilai <=59) {
+    text = "Nilai D";
+   } else if (nilai <= 50 ) {
+    text = "Tidak Lulus";
+   } else {
+    text = "Coba lagi";
+   }
+    document.getElementById("demo1").innerHTML = text;
   }
-}
 
-const operators = document.querySelectorAll(".operator")
-operators.forEach((operator) => {
-  operator.addEventListener("click", (event) => {
-    inputOperator(event.target.value)
-  })
-})
+  //tugas Ganjil
+  function myFunction2() {
+    var angka ;
+    var text = "";
 
-const inputOperator = (operator) => {
-  if (calculationOperator === '') {
-  prevNumber = currentNumber
+    angka = document.getElementById("numb2").value;
+    
+
+    for(var i = 1; i <= angka; i++){
+      if((i%2)===1){
+    text += "<br>Angka Ganjil " + i;
+    i++;
+      }
+   } 
+    document.getElementById("demo2").innerHTML = text;
   }
-  calculationOperator = operator
-  currentNumber = '0'
-}
+  
+  //tugas Genap
+  function myFunction3() {
+    var angka1 ;
+    var text = "";
 
-const equalSign = document.querySelector('.equal-sign')
-equalSign.addEventListener('click', ()=>{
-  calculate()
-  updateScreen(currentNumber)
-})
-
-const calculate = () => {
-  let result = ''
-  switch(calculationOperator) {
-    case "+":
-      result = parseFloat(prevNumber) + parseFloat(currentNumber)
-      break;
-    case "-":
-      result = parseFloat(prevNumber) - parseFloat(currentNumber)
-      break;
-    case "*":
-      result = parseFloat(prevNumber) * parseFloat(currentNumber)
-      break;
-    case "/":
-      result = parseFloat(prevNumber) / parseFloat(currentNumber)
-      break;
-    default:
-      return;
+    angka1 = document.getElementById("numb3").value;
+    var i = 2
+   
+    while (i<angka1){
+    text += "<br>Angka Genap " + i;
+    i+=2;
+      } 
+    document.getElementById("demo3").innerHTML = text;
   }
-  currentNumber = result
-  calculationOperator = ''
-}
-
-const  clearBtn = document.querySelector('.all-clear')
-clearBtn.addEventListener('click', ()=>{
-  clearAll()
-  updateScreen(currentNumber)
-})
-
-const clearAll = ()=>  {
-  prevNumber = ''
-  calculationOperator = ''
-  currentNumber = '0'
-}
-
-const decimal = document.querySelector('.decimal')
-
-decimal.addEventListener('click', (event)=>{
-  inputDecimal(event.target.value)
-  updateScreen(currentNumber)
-})
-
-inputDecimal = (dot) =>{
-  if(currentNumber.includes('.')){
-    return
-  }
-  currentNumber += dot
-}
